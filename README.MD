@@ -1,4 +1,19 @@
 
+### What I have done
+1. Create and deployed the web application on render.com https://smiles-ml-web.onrender.com
+2. Created a database on MongoDB atlas 
+3. Created a docker image that serves the transformer model using FastAPI to perform inference and deployed it on render.com
+
+I chose to deploy the model on render.com and MongoDB atlas because it is free and easy to use, abstracting away the complexities of managing the infrastructure, while providing a scalable solution. The current application includes the following features
+- User input SMILE string and generate a molecular image with the predicted plot. 
+- Button when clicked will query 10 random SMILE strings from the database and display the molecular images with the predicted plot.
+
+### Improvements
+- Allow user to download the predicted image and plot
+- Allow user to upload a file with multiple SMILE strings and generate the molecular images with the predicted plot
+- Include error handling for invalid SMILE strings and other errors from the server
+
+
 ### Costs: Assuming we will be given a pretrained model
 ### Hosting: 
 - Static website (render.com): free
