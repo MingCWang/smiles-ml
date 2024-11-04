@@ -90,30 +90,30 @@ function App() {
 				{!isLoading ?
 					<>
 						{error && <div className='error'>{error}</div>}
-						{isValidSmiles ?
-							<>
-								{predictions && <>
-									<img src={`${SERVER_URL}/plot?to_plot=${predictions}`} alt="Plot" />
-									<img src={`${SERVER_URL}/mol_image?smiles=${smiles}`} alt="Molecule Image" />
+						
+						<>
+							{predictions && <>
+								<img src={`${SERVER_URL}/plot?to_plot=${predictions}`} alt="Plot" />
+								<img src={`${SERVER_URL}/mol_image?smiles=${smiles}`} alt="Molecule Image" />
 
-								</>}
-								{results &&
-									<div className='results'>
-										{results.map((result, index) => (
-											<div key={index} className='result'>
-												<div className='smiles'>{result.smiles}</div>
-												{result.is_valid_smile ?
-													<>
-														<img src={`${SERVER_URL}/plot?to_plot=${result.predictions}`} alt="Plot" />
-														<img src={`${SERVER_URL}/mol_image?smiles=${result.smiles}`} alt="Molecule Image" />
-													</>
-													: <div className='error'>Invalid SMILES string</div>}
-											</div>
-										))}
-									</div>}
+							</>}
+							{results &&
+								<div className='results'>
+									{results.map((result, index) => (
+										<div key={index} className='result'>
+											<div className='smiles'>{result.smiles}</div>
+											{result.is_valid_smile ?
+												<>
+													<img src={`${SERVER_URL}/plot?to_plot=${result.predictions}`} alt="Plot" />
+													<img src={`${SERVER_URL}/mol_image?smiles=${result.smiles}`} alt="Molecule Image" />
+												</>
+												: <div className='error'>Invalid SMILES string</div>}
+										</div>
+									))}
+								</div>}
 
-							</>
-							: <div className='error'>Invalid SMILES string</div>}
+						</>
+							{isValidSmiles && <div className='error'>Invalid SMILES string</div>}
 					</>
 					: <div className='loading'>Loading...</div>
 				}
