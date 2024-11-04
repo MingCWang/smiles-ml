@@ -56,7 +56,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Allow specific frontend origin
+    # allow_origins=origins,  # Allow specific frontend origin
+    allow_origins=["*"],  # allow all origins for testing
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
@@ -80,14 +81,12 @@ def predict(smiles: str, save: bool = False):
     Returns:
         dict:  {'predictions': predictions, 'mol_img': mol_img, 'to_plot': to_plot}
     """
-    tokens = tokenizer(smiles, return_tensors="pt")
-    predictions = MODEL(**tokens)
-    to_plot = predictions.logits.detach().numpy()[0]
-    
+   
     if Chem.MolFromSmiles(smiles):
         is_valid = True
     else:
         is_valid = False
+        return {"smiles": smiles, "predictions": [], "is_valid_smile": is_valid}
         
     if save:
         # Store the prediction as a list to avoid deepcopy errors
@@ -99,19 +98,23 @@ def predict(smiles: str, save: bool = False):
             }
         )
 
+    tokens = tokenizer(smiles, return_tensors="pt")
+    predictions = MODEL(**tokens)
+    to_plot = predictions.logits.detach().numpy()[0]
+    
     return {
         "smiles": smiles,
         "predictions": to_plot.tolist(),
         "is_valid_smile": is_valid
     }
 
-@app.get("/ten-results")
-def get_ten_results():
+@app.get("/results")
+def get_results(result_num):
     '''
-    generates ten prediction from randomly selected data from smiles collection 
+    generates prediction from randomly selected data from smiles collection 
     and store in results collection
     '''
-    data = list(SMILES.aggregate([{"$sample": {"size": 5}}]))
+    data = list(SMILES.aggregate([{"$sample": {"size": result_num}}]))
     results = []
     for d in data:
         smiles_string = d["SMILES"]
