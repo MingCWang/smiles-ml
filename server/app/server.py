@@ -17,7 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # TODO: put this in env file
 # port = int(os.getenv("PORT", 8000))
 CONNECTION_STRING  = os.getenv("DATABASE_URL", "mongodb://localhost:27017/defaultdb")
-
+FRONT_END_ORIGIN = os.getenv("FRONT_END_ORIGIN", "http://localhost:5173")
 try:
     ckpt_path = "./checkpoints/"
     # Paths to tokenizer files
@@ -51,6 +51,7 @@ app = FastAPI()
 # List of allowed origins 
 origins = [
     "http://localhost:5173",  # Frontend origin
+    FRONT_END_ORIGIN,
 ]
 
 app.add_middleware(
@@ -110,7 +111,7 @@ def get_ten_results():
     generates ten prediction from randomly selected data from smiles collection 
     and store in results collection
     '''
-    data = list(SMILES.aggregate([{"$sample": {"size": 10}}]))
+    data = list(SMILES.aggregate([{"$sample": {"size": 5}}]))
     results = []
     for d in data:
         smiles_string = d["SMILES"]
