@@ -10,7 +10,7 @@ function App() {
 	const SERVER_URL = import.meta.env.VITE_SERVER_URL as string;
 	const [smiles, setSmiles] = useState('');
 	const [predictions, setPredictions] = useState('');
-	const [isValidSmiles, setIsValidSmiles] = useState(false);
+	const [isValidSmiles, setIsValidSmiles] = useState(true);
 	const [results, setResults] = useState<{ smiles: string; predictions: string; is_valid_smile: boolean }[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 
