@@ -25,7 +25,7 @@ function App() {
 
 		event.preventDefault(); // Prevent default form submission behavior
 		// Send SMILES data to the backend
-		fetch(`${SERVER_URL}/results`, {
+		fetch(`${SERVER_URL}/results?result_num=1`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
