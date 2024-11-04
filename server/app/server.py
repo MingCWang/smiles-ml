@@ -88,6 +88,11 @@ def predict(smiles: str, save: bool = False):
         is_valid = False
         return {"smiles": smiles, "predictions": [], "is_valid_smile": is_valid}
         
+ 
+
+    tokens = tokenizer(smiles, return_tensors="pt")
+    predictions = MODEL(**tokens)
+    to_plot = predictions.logits.detach().numpy()[0]
     if save:
         # Store the prediction as a list to avoid deepcopy errors
         RESULTS.insert_one(
@@ -97,11 +102,6 @@ def predict(smiles: str, save: bool = False):
                 "is_valid_smile": is_valid
             }
         )
-
-    tokens = tokenizer(smiles, return_tensors="pt")
-    predictions = MODEL(**tokens)
-    to_plot = predictions.logits.detach().numpy()[0]
-    
     return {
         "smiles": smiles,
         "predictions": to_plot.tolist(),
