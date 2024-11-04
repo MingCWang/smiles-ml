@@ -47,6 +47,8 @@ function App() {
 	// @ts-expect-error - ignore the error for import meta
 	const handleSubmit = async (event) => {
 		setResults([]);
+		setIsLoading(true);
+
 		event.preventDefault(); // Prevent default form submission behavior
 		// Send SMILES data to the backend
 		fetch(`${SERVER_URL}/predict?smiles=${encodeURIComponent(smiles)}`, {
@@ -61,9 +63,12 @@ function App() {
 				console.log('Success:', data);
 				setPredictions(data.predictions);
 				setIsValidSmiles(data.is_valid_smile);
+				setIsLoading(false);
 			})
 			.catch((error) => {
 				setError(error);
+				setIsLoading(false);
+
 			});
 	}
 	// O=C([C@@H](c1ccc(cc1)O)N)N[C@@H]1C(=O)N2[C@@H]1SC([C@@H]2C(=O)O)(C)C
