@@ -19,7 +19,7 @@ function App() {
 	const handleGenerateTen = async (event) => {
 		setPredictions('');
 		setSmiles('');
-		setIsValidSmiles(false);
+		setIsValidSmiles(true);
 		setIsLoading(true);
 		setError('');
 
@@ -118,7 +118,7 @@ function App() {
 								</div>}
 
 						</>
-							{(!isValidSmiles && (predictions || results)) && <div className='error'>Invalid SMILES string</div>}
+							{(!isValidSmiles && predictions) && <div className='error'>Invalid SMILES string</div>}
 					</>
 					: <div className='loading'>Loading...</div>
 				}
