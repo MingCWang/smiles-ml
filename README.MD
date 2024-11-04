@@ -34,6 +34,10 @@ will only require around 62 MB of memory to perform inference on a single CPU.
 
 However, due to the size of 512 MB RAM, the server will not be able to return 10 molecular images at once. Therefore, without the data of the size of running an inference, the current application is set to generating single random results. This issue is resolvable without additional cost by implementing a pagination system that will only return a single result at a time.
 
+I would recommned at least scale up to the $7 tier to avoid the delay of spinning up the server when the server is not in use.
+
+Further comparison of server options could be evaluated through gathering more information of the model and intended usage. 
+
 Below is the scaling options for render.com for reference
 ![pricing](https://github.com/user-attachments/assets/34548229-e54b-4d1d-8a8b-be219ea94ce0)
 
