@@ -81,6 +81,7 @@ def predict(smiles: str, save: bool = False):
     Returns:
         dict:  {'predictions': predictions, 'mol_img': mol_img, 'to_plot': to_plot}
     """
+    
    
     if Chem.MolFromSmiles(smiles):
         is_valid = True
@@ -88,7 +89,8 @@ def predict(smiles: str, save: bool = False):
         is_valid = False
         return {"smiles": smiles, "predictions": [], "is_valid_smile": is_valid}
         
- 
+    existing_result = RESULTS.find_one({"smiles": smiles})
+    if existing_result: return existing_result
 
     tokens = tokenizer(smiles, return_tensors="pt")
     predictions = MODEL(**tokens)
