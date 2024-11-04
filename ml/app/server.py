@@ -11,11 +11,12 @@ from rdkit.Chem import Draw
 from fastapi.responses import StreamingResponse
 from pymongo import MongoClient, server_api
 import io
-
+import os
 from fastapi.middleware.cors import CORSMiddleware
 
 # TODO: put this in env file
-CONNECTION_STRING = "mongodb+srv://ming:BzTxTPiOyMPu2ITg@cluster0.kll536f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# port = int(os.getenv("PORT", 8000))
+CONNECTION_STRING  = os.getenv("DATABASE_URL", "mongodb://localhost:27017/defaultdb")
 
 try:
     ckpt_path = "./checkpoints/"
