@@ -6,7 +6,7 @@ import pandas as pd
 
 def get_database():
  
-   CONNECTION_STRING = "mongodb+srv://ming:BzTxTPiOyMPu2ITg@cluster0.kll536f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+   CONNECTION_STRING = "mongodb://localhost:27017/defaultdb"
  
    client = MongoClient(CONNECTION_STRING, server_api=server_api.ServerApi(
  version="1", strict=True, deprecation_errors=True))
