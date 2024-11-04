@@ -125,7 +125,7 @@ def get_results(result_num):
             prediction = predict(smiles_string, save=True)
             results.append(prediction)  
         
-    return {"message": "Ten results generated and stored in the database", "results": results}
+    return {"message": "results generated and stored in the database", "results": results}
     
 
 @app.get("/mol_image")

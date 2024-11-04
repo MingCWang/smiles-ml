@@ -11,11 +11,11 @@ function App() {
 	const [smiles, setSmiles] = useState('');
 	const [predictions, setPredictions] = useState('');
 	const [isValidSmiles, setIsValidSmiles] = useState(false);
-	const [results, setResults] = useState<{ smiles: string; predictions: string; is_valid_smile: boolean}[]>([]);
+	const [results, setResults] = useState<{ smiles: string; predictions: string; is_valid_smile: boolean }[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [error, setError] = useState('');
-// @ts-expect-error - ignore the error for import meta
+	// @ts-expect-error - ignore the error for import meta
 	const handleGenerateTen = async (event) => {
 		setPredictions('');
 		setSmiles('');
@@ -79,46 +79,47 @@ function App() {
 
 				</div>
 				<p>or</p>
-				<Button variant="contained" onClick={handleGenerateTen} sx={{ height: 40, width: 300}}>generate random results</Button>
+				<Button variant="contained" onClick={handleGenerateTen} sx={{ height: 40, width: 300 }}>generate random results</Button>
 
-				
+
 			</div>
 
 
-		<div className="resultContainer">
-			<div className='title'>Results</div>
-			{ !isLoading ? 
-				<>
-					{(predictions || error) && (isValidSmiles 
-					? 
-					<> 
-					<img src={`${SERVER_URL}/plot?to_plot=${predictions}`} alt="Plot" /> 
-					<img src={`${SERVER_URL}/mol_image?smiles=${smiles}`} alt="Molecule Image" /> 
-					</>
-					: <div className='error'>Invalid SMILES string</div>
-					)}
+			<div className="resultContainer">
+				<div className='title'>Results</div>
+				{!isLoading ?
+					<>
+						{error && <div className='error'>{error}</div>}
+						{isValidSmiles ?
+							<>
+								{predictions && <>
+									<img src={`${SERVER_URL}/plot?to_plot=${predictions}`} alt="Plot" />
+									<img src={`${SERVER_URL}/mol_image?smiles=${smiles}`} alt="Molecule Image" />
 
-					{results ?
-					<div className='results'>
-						{results.map((result, index) => (
-							<div key={index} className='result'>
-								<div className='smiles'>{result.smiles}</div>
-								{result.is_valid_smile ? 
-								<>	
-									<img src={`${SERVER_URL}/plot?to_plot=${result.predictions}`} alt="Plot" />
-									<img src={`${SERVER_URL}/mol_image?smiles=${result.smiles}`} alt="Molecule Image" />
-								</> 
-								: <div className='error'>Invalid SMILES string</div>}
-							</div>
-						))}
-					</div> : <div>{error} </div> }
-					
-				</>
-				: <div className='loading'>Loading...</div>
-		}
-		</div>
+								</>}
+								{results &&
+									<div className='results'>
+										{results.map((result, index) => (
+											<div key={index} className='result'>
+												<div className='smiles'>{result.smiles}</div>
+												{result.is_valid_smile ?
+													<>
+														<img src={`${SERVER_URL}/plot?to_plot=${result.predictions}`} alt="Plot" />
+														<img src={`${SERVER_URL}/mol_image?smiles=${result.smiles}`} alt="Molecule Image" />
+													</>
+													: <div className='error'>Invalid SMILES string</div>}
+											</div>
+										))}
+									</div>}
+
+							</>
+							: <div className='error'>Invalid SMILES string</div>}
+					</>
+					: <div className='loading'>Loading...</div>
+				}
+			</div>
 		</>
-	
+
 	)
 }
 
