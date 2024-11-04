@@ -3,10 +3,11 @@
 1. Create and deployed the web application on render.com https://smiles-ml-web.onrender.com
 2. Created a database on MongoDB atlas 
 3. Created a docker image that serves the transformer model using FastAPI to perform inference and deployed it on render.com
+4. Generated over 20 molecular images with the predicted plot and stored them in the database 
 
 I chose to deploy the model on render.com and MongoDB atlas because it is free and easy to use, abstracting away the complexities of managing the infrastructure, while providing a scalable solution. The current application includes the following features
 - User input SMILE string and generate a molecular image with the predicted plot. 
-- Button when clicked will query 10 random SMILE strings from the database and display the molecular images with the predicted plot.
+- Button when clicked will query 5 random SMILE strings from the database and display the molecular images with the predicted plot.
 
 ### Improvements
 - Allow user to download the predicted image and plot
@@ -29,6 +30,8 @@ The above is sufficent for the current application assuming a transformer model 
 - batch size of 2
 - sequence length of 40
 will only require around 62 MB of memory to perform inference on a single CPU.
+
+However, due to the size of 512 MB, the server will not be able to return a large number of molecular images at once. Therefore, the current application is limited to 5 random SMILE strings from the database.
 
 However, below is the scaling options for render.com for reference
 - Server: $7 month

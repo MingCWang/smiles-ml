@@ -10,4 +10,4 @@ COPY ./app /code/app
 
 COPY ./checkpoints /code/checkpoints
 
-CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "${PORT}"]
+CMD ["sh", "-c", "uvicorn app.server:app --host 0.0.0.0 --port ${PORT}"]

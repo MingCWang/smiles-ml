@@ -25,7 +25,7 @@ function App() {
 
 		event.preventDefault(); // Prevent default form submission behavior
 		// Send SMILES data to the backend
-		fetch(`${SERVER_URL}/ten-results`, {
+		fetch(`${SERVER_URL}/results`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ function App() {
 
 				</div>
 				<p>or</p>
-				<Button variant="contained" onClick={handleGenerateTen} sx={{ height: 40, width: 300}}>generate ten random results</Button>
+				<Button variant="contained" onClick={handleGenerateTen} sx={{ height: 40, width: 300}}>generate random results</Button>
 
 				
 			</div>
