@@ -1,4 +1,10 @@
 .venv
+.env
 node_modules
 checkpoints
 models--unikei--bert-base-smiles
+
+# to build 
+# docker buildx build --platform linux/amd64 -t minrel/ml:latest .
+# to push
+#  docker push minrel/ml:latest  
