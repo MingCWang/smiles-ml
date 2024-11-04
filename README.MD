@@ -41,3 +41,9 @@ Further comparison of server options could be evaluated through gathering more i
 Below is the scaling options for render.com for reference
 ![pricing](https://github.com/user-attachments/assets/34548229-e54b-4d1d-8a8b-be219ea94ce0)
 
+DEMO:
+
+CPU is 0.1 with free tier, so the loading time is long, could be significantly improved with just a small upgrade to the $7 tier which is 0.5 CPU
+
+https://github.com/user-attachments/assets/ec07de49-f2ec-4cad-9802-bbeb1fa1d486
+

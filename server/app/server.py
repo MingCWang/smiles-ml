@@ -90,7 +90,12 @@ def predict(smiles: str, save: bool = False):
         return {"smiles": smiles, "predictions": [], "is_valid_smile": is_valid}
         
     existing_result = RESULTS.find_one({"smiles": smiles})
-    if existing_result: return existing_result
+    if existing_result: 
+        return {
+            "smiles": smiles,
+            "predictions": existing_result["predictions"],
+            "is_valid_smile": is_valid
+        }
 
     tokens = tokenizer(smiles, return_tensors="pt")
     predictions = MODEL(**tokens)
