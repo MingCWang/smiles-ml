@@ -1,0 +1,10 @@
+fastapi
+numpy
+torch
+transformers
+matplotlib
+numpy
+rdkit
+fastapi
+pymongo
+uvicorn

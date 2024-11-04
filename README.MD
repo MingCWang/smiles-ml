@@ -1,0 +1,23 @@
+
+### Costs: Assuming we will be given a pretrained model
+### Hosting: 
+- Static website (render.com): free
+- Database (MongoDB atlas): free
+  - storage: 512 MB 
+- Server (render.com): free
+  - bandwith: 100 GB
+  - RAM: 512 MB
+  - CPU: 0.1
+### GPU usage
+- Not required, unless you will be training the model actively
+### Scaling:
+The above is sufficent for the current application assuming a transformer model that has 
+- 14 million parameters, and each parameter is a float32 (4 bytes)
+- batch size of 2
+- sequence length of 40
+will only require around 62 MB of memory to perform inference on a single CPU.
+
+However, below is the scaling options for render.com for reference
+- Server: $7 month
+  - ![Screen Shot 2024-11-03 at 11 12 57 PM](https://github.com/user-attachments/assets/f76b51d7-3949-4020-a830-bc6b259f36d8)
+
