@@ -13,9 +13,7 @@ I chose to deploy the model on render.com and MongoDB atlas because it is free a
 - Allow user to upload a file with multiple SMILE strings and generate the molecular images with the predicted plot
 - Include error handling for invalid SMILE strings and other errors from the server
 
-
-### Costs: Assuming we will be given a pretrained model
-### Hosting: 
+### Hosting: Assuming we will be given a pretrained model
 - Static website (render.com): free
 - Database (MongoDB atlas): free
   - storage: 512 MB 
