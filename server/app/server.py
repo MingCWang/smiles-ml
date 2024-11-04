@@ -114,7 +114,7 @@ def get_results(result_num):
     generates prediction from randomly selected data from smiles collection 
     and store in results collection
     '''
-    data = list(SMILES.aggregate([{"$sample": {"size": result_num}}]))
+    data = list(SMILES.aggregate([{"$sample": {"size": int(result_num)}}]))
     results = []
     for d in data:
         smiles_string = d["SMILES"]
