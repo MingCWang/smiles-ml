@@ -113,7 +113,7 @@ function App() {
 								</div>}
 
 						</>
-							{!isValidSmiles && <div className='error'>Invalid SMILES string</div>}
+							{(!isValidSmiles && (predictions || results)) && <div className='error'>Invalid SMILES string</div>}
 					</>
 					: <div className='loading'>Loading...</div>
 				}
