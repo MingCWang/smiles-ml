@@ -1,10 +1,12 @@
+### SMILES prediction generator
+A React based web application that integrates a transformer model, visualizing predicted molecular structure from SMILE strings as inputs.
 
-### What I have done
-1. Create and deployed the web application on render.com https://smiles-ml-web.onrender.com
-2. Created a database on MongoDB atlas to store prediction results and perform caching.
-3. Created a docker image that serves the transformer model using FastAPI to perform inference and deployed it on render.com
-4. Generated over 30 molecular images with the predicted plot and stored them in the database 
-5. Developed 4 REST API end points https://ml-latest-zsx7.onrender.com/docs
+### What I did
+1. Deployed the web application on render.com https://smiles-ml-web.onrender.com
+2. Created a MongoDB atlas database to store prediction results and perform caching.
+3. Created a docker image that serves the transformer model.
+4. Developed 4 REST API end points using FastAPI to perform inference https://ml-latest-zsx7.onrender.com/docs
+5. Generated over 30 molecular images with the predicted plot and stored them in the database 
 
 I chose to deploy the model on render.com and MongoDB atlas because it is free and easy to use, abstracting away the complexities of managing the infrastructure, while providing a scalable solution. The current application includes the following features
 - User input SMILE string and generate a molecular image with the predicted plot. 
