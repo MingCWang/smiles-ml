@@ -4,6 +4,7 @@
 2. Created a database on MongoDB atlas 
 3. Created a docker image that serves the transformer model using FastAPI to perform inference and deployed it on render.com
 4. Generated over 30 molecular images with the predicted plot and stored them in the database 
+5. Developed
 
 I chose to deploy the model on render.com and MongoDB atlas because it is free and easy to use, abstracting away the complexities of managing the infrastructure, while providing a scalable solution. The current application includes the following features
 - User input SMILE string and generate a molecular image with the predicted plot. 
@@ -26,24 +27,21 @@ I chose to deploy the model on render.com and MongoDB atlas because it is free a
 ### GPU usage
 - Not required, unless you will be training the model actively
 ### Scaling:
-The above is sufficent for the current application assuming a transformer model that has 
-- 14 million parameters, and each parameter is a float32 (4 bytes)
-- batch size of 2
-- sequence length of 40
-will only require around 62 MB of memory to perform inference on a single CPU.
 
-However, due to the size of 512 MB RAM, the server will not be able to return 10 molecular images at once. Therefore, without the data of the size of running an inference, the current application is set to generating single random results. This issue is resolvable without additional cost by implementing a pagination system that will only return a single result at a time.
+However, due to the size of 512 MB RAM, the server will not be able to return 10 molecular images at once. Therefore, without the data of the size of running an inference, the current application is set to generating single random results. 
 
-I would recommned at least scale up to the $7 tier to avoid the delay of spinning up the server when the server is not in use.
+To minimize the cost of scaling, I need to calculate the FLOPS of the model to obtain how much GPU the model needs to generate a response within a given time. 
 
-Further comparison of server options could be evaluated through gathering more information of the model and intended usage. 
+Here are the articles that I'm referring to. 
 
-Below is the scaling options for render.com for reference
-![pricing](https://github.com/user-attachments/assets/34548229-e54b-4d1d-8a8b-be219ea94ce0)
+1. [GPU estimation](https://medium.com/@samuel-taiwo/a-comprehensive-guide-to-selecting-and-estimating-gpus-for-serving-ml-models-23d2874dcbd8)
+2. [Calculating FLOPS](https://www.adamcasson.com/posts/transformer-flops)
+
+Currently, if I were to proceed with this deployment, I would migrate to AWS EC2 given the size of the target user base. For t2.medium instance with 2 CPU is around 406 USD a year. I don't have the exact time that it will take for a single prediction, but I can see it being around 10 seconds or below. Given the current one we're using is around 0.1 CPU. This is one of the  cheapest options on the market which is around 0.0464 USD per Hour for performing model inference, as if I were to use AWS Sagemaker that is specialized for MLops, it would be around 24% more expensive than EC2. 
 
 DEMO:
 
-CPU is 0.1 with free tier, so the loading time is long, could be significantly improved with just a small upgrade to the $7 tier which is 0.5 CPU
+CPU is 0.1 with free tier, so the loading time is long.
 
 https://github.com/user-attachments/assets/ec07de49-f2ec-4cad-9802-bbeb1fa1d486
 
