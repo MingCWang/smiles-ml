@@ -12,7 +12,7 @@ I chose to deploy the model on render.com and MongoDB atlas because it is free a
 - User input SMILE string and generate a molecular image with the predicted plot. 
 - Button when clicked will query 1 random SMILE strings from the database and display the molecular images with the predicted plot.
 
-DEMO:
+### Demo:
 
 CPU is 0.1 with free tier, so the loading time is long.
 
